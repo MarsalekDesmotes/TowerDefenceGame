@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class RoundController : MonoBehaviour
 {
     bool isPlaying,beginingOfRound;
-
+    public static bool isSpawnEnemy;
     public Button roundButton;
     AgentManager agentManager;
-    int roundChecker;
+   public static int roundChecker;
     int indis = 0;
     public int[] RoundCounter;
    
@@ -19,6 +19,7 @@ public class RoundController : MonoBehaviour
         
         agentManager = GetComponent<AgentManager>();
         roundChecker = RoundCounter[indis];
+        Debug.Log(roundChecker);
         
     }
     
@@ -29,7 +30,10 @@ public class RoundController : MonoBehaviour
         isPlaying = true;
         indis++;
         roundChecker = RoundCounter[indis];
-        agentManager.AgentInstantiate(roundChecker);
+        Debug.Log(roundChecker);
+        isSpawnEnemy = true;
+        
+       // agentManager.AgentInstantiate();
         roundButton.gameObject.SetActive(false);
 
 
@@ -55,6 +59,8 @@ public class RoundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
         if (AgentManager.EnemyCounter == 0 )
         {
             isPlaying = false;

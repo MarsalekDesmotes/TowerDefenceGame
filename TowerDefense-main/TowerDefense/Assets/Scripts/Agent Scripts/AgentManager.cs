@@ -5,12 +5,18 @@ using UnityEngine.AI;
 
 public class AgentManager : MonoBehaviour
 {
+
+    int i;
     // Dizi Yardýmýyla Tüm Ajanlar Alýnacak
-    public static int EnemyCounter; 
-    public Transform spawnPoint;
+    public static int PiyadeCounter;
+    public static int EnemyCounter;
+    Transform SpawnYeri;
+    public GameObject spawnPoint1;
     public NavMeshAgent[] Agent;
     public NavMeshAgent[] Tank;
     public NavMeshAgent[] Ucak;
+    float zaman;
+
     
     public GameObject Tower;
     
@@ -19,33 +25,65 @@ public class AgentManager : MonoBehaviour
 
     void Start()
     {
+        
+
+        SpawnYeri = spawnPoint1.GetComponent<Transform>();
+        
+        
+        
         EnemyCounter = Agent.Length + Tank.Length + Ucak.Length;
     }
 
 
-    public void AgentInstantiate(int round)
+    public void AgentInstantiate()
     {
+        
 
-        switch (round)
+        switch (RoundController.roundChecker)
         {
 
+            case 0:
+                Debug.Log("Ca");
+                break;
+
             case 1:
-                for (int i = 0; i < Agent.Length; i++)
+                for (i = 0; i < Agent.Length; i++)
                 {
-                    Instantiate(Agent[i], spawnPoint);
+                    // Invoke("InstantiateAgent1", 4f);
+
+                    if (zaman > 2f)
+                    {
+                        
+                       
+                        Instantiate(Agent[i], new Vector3(-78f, -0.72f, 32f),Quaternion.identity);
+                       // Agent[i].transform.SetParent(SpawnYeri, false);
+                        Agent[i].SetDestination(Tower.transform.position);
+                        zaman = 0f;
+                        
+                        
+                    }
+
+                    
+
+                    
+                    
+
+
+
 
                 }
-                for (int i = 0; i < Tank.Length; i++)
+               /* for (int i = 0; i < Tank.Length; i++)
                 {
-                    Instantiate(Tank[i], spawnPoint);
+                    
+                    Instantiate(Tank[i], SpawnYeri);
 
                 }
                 for (int i = 0; i < Ucak.Length; i++)
                 {
-                    Instantiate(Ucak[i], spawnPoint);
+                    Instantiate(Ucak[i], SpawnYeri);
 
-                }
-
+                } 
+                */
                 break;
             case 2:
                 //Instantiate
@@ -63,7 +101,8 @@ public class AgentManager : MonoBehaviour
 
 
 
-
+            default:
+                break;
 
 
 
@@ -80,11 +119,27 @@ public class AgentManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for(int i =0; i < Agent.Length; i++)
+        zaman += Time.deltaTime;
+        if (RoundController.isSpawnEnemy)
         {
-            Agent[i].SetDestination(Tower.transform.position);
+
+            AgentInstantiate();
+            if (i == Agent.Length)
+            {
+
+                //RoundController.isSpawnEnemy = false;
+
+
+            }
 
         }
+        
+            
+      /*  for(int i =0; i < Agent.Length; i++)
+        {
+           Agent[i].SetDestination(Tower.transform.position);
+
+        }*/
         for (int i = 0; i < Tank.Length; i++)
         {
             Tank[i].SetDestination(Tower.transform.position);
