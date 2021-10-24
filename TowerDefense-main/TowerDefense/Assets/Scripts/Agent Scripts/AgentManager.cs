@@ -56,8 +56,10 @@ public class AgentManager : MonoBehaviour
                         
                        
                         Instantiate(Agent[i], new Vector3(-78f, -0.72f, 32f),Quaternion.identity);
-                       // Agent[i].transform.SetParent(SpawnYeri, false);
-                        Agent[i].SetDestination(Tower.transform.position);
+                        // Agent[i].transform.SetParent(SpawnYeri, false);
+                        // Agent[i].SetDestination(Tower.transform.position);
+                       // Agent[i].Warp(Tower.transform.position);
+                        
                         zaman = 0f;
                         
                         
