@@ -47,29 +47,48 @@ public class AgentManager : MonoBehaviour
                 break;
 
             case 1:
-                for (i = 0; i < Agent.Length; i++)
-                {
-                    // Invoke("InstantiateAgent1", 4f);
 
-                    if (zaman > 2f)
+                while (RoundController.isSpawnEnemy)
+                {
+
+                    for (i = 0; i < Agent.Length -1 ; i++)
                     {
+                        // Invoke("InstantiateAgent1", 4f);
+
+                        if (zaman > 2f)
+                        {
+
+
+                            Instantiate(Agent[i], new Vector3(-78f, -0.72f, 32f), Quaternion.identity);
+                            // Agent[i].transform.SetParent(SpawnYeri, false);
+                            // Agent[i].SetDestination(Tower.transform.position);
+                            // Agent[i].Warp(Tower.transform.position);
+
+                            zaman = 0f;
+
+
                         
-                       
-                        Instantiate(Agent[i], new Vector3(-78f, -0.72f, 32f),Quaternion.identity);
-                        // Agent[i].transform.SetParent(SpawnYeri, false);
-                        // Agent[i].SetDestination(Tower.transform.position);
-                       // Agent[i].Warp(Tower.transform.position);
-                        
-                        zaman = 0f;
-                        
-                        
+
+
+                            }
+
+
+
+
                     }
 
-                    
+
+
+
 
                     
-                    
+                        if (i == Agent.Length-1)
+                        {
 
+                            RoundController.isSpawnEnemy = false;
+
+
+                        }
 
 
 
@@ -126,32 +145,12 @@ public class AgentManager : MonoBehaviour
         {
 
             AgentInstantiate();
-            if (i == Agent.Length)
-            {
-
-                //RoundController.isSpawnEnemy = false;
-
-
-            }
+           
 
         }
         
             
-      /*  for(int i =0; i < Agent.Length; i++)
-        {
-           Agent[i].SetDestination(Tower.transform.position);
-
-        }*/
-        for (int i = 0; i < Tank.Length; i++)
-        {
-            Tank[i].SetDestination(Tower.transform.position);
-
-        }
-        for (int i = 0; i < Ucak.Length; i++)
-        {
-            Ucak[i].SetDestination(Tower.transform.position);
-
-        }
+     
 
 
     }
