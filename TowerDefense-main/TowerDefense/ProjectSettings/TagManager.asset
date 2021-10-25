@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - tank
   - ucak
+  - Zemin
   layers:
   - Default
   - TransparentFX

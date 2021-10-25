@@ -28,8 +28,8 @@ public class AgentManager : MonoBehaviour
         
 
         SpawnYeri = spawnPoint1.GetComponent<Transform>();
-        
-        
+
+        Debug.Log("dusman sayisi" +Agent.Length);
         
         EnemyCounter = Agent.Length + Tank.Length + Ucak.Length;
     }
@@ -48,10 +48,10 @@ public class AgentManager : MonoBehaviour
 
             case 1:
 
-                while (RoundController.isSpawnEnemy)
+                if (RoundController.isSpawnEnemy)
                 {
 
-                    for (i = 0; i < Agent.Length -1 ; i++)
+                    for (i = 0; i < Agent.Length ;i++)
                     {
                         // Invoke("InstantiateAgent1", 4f);
 
@@ -60,17 +60,20 @@ public class AgentManager : MonoBehaviour
 
 
                             Instantiate(Agent[i], new Vector3(-78f, -0.72f, 32f), Quaternion.identity);
-                            // Agent[i].transform.SetParent(SpawnYeri, false);
-                            // Agent[i].SetDestination(Tower.transform.position);
-                            // Agent[i].Warp(Tower.transform.position);
-
+                           
+                             
                             zaman = 0f;
+                            if (i == Agent.Length - 1)
+                            {
 
-
-                        
+                                RoundController.isSpawnEnemy = false;
 
 
                             }
+
+
+
+                        }
 
 
 
@@ -82,13 +85,7 @@ public class AgentManager : MonoBehaviour
 
 
                     
-                        if (i == Agent.Length-1)
-                        {
-
-                            RoundController.isSpawnEnemy = false;
-
-
-                        }
+                       
 
 
 
@@ -148,10 +145,15 @@ public class AgentManager : MonoBehaviour
            
 
         }
-        
-            
-     
+        Debug.Log("i :" + i);
+        Debug.Log("dusman sayisi" + Agent.Length);
+
 
 
     }
+
+
+   
+
+    
 }

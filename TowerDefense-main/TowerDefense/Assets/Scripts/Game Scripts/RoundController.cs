@@ -59,14 +59,13 @@ public class RoundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+      
         
         if (AgentManager.EnemyCounter == 0 )
         {
             isPlaying = false;
             beginingOfRound = true;
-            
-            
+          
             
 
         }
