@@ -8,9 +8,12 @@ TagManager:
   - projectile
   - GunRotation
   - Ground
-  - tank
-  - ucak
+  - Enemy
+  - enemy
+  - Gun
   - Zemin
+  - ucak
+  - tank
   layers:
   - Default
   - TransparentFX
